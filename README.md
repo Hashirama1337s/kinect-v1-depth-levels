@@ -4,9 +4,12 @@ A single-operator measurement on one named Xbox 360 Kinect, with the scripts, th
 the failed controls, and the criteria that would prove it wrong.
 
 **Short version:** the sensor's realisable depth values form a lattice that is uniform in 1/z,
-and the number of distinct values you can observe **keeps growing the longer you look** — so any
-published count is a floor conditioned on run length, not a property of the device. We ran it to
-10,000 frames and it had not saturated.
+and in the 1–4 m band a **thermally settled** sensor emits exactly **259** distinct values —
+invariant from the first frame to the hundred-thousandth. A **cold** sensor appears to keep
+finding new levels for as long as you watch. That difference is not the sensor discovering
+anything; it is thermal drift dragging the scene across the lattice and manufacturing levels
+that are not realisable at equilibrium. **Warm-up state is a confound for level counting, and we
+have not seen it stated anywhere.**
 
 ---
 
@@ -152,11 +155,17 @@ Our steps at 1.0-3.5 m reproduce the published law to ~1%. That reproduction is 
 rig**, not a discovery.
 
 **Ours, offered as new:**
-- the **U(N) growth curve** for the realisable level set, to 10,000 frames;
-- the resulting statement that the set **does not saturate** at that scale, so published
-  cardinalities are floors conditioned on run length;
+- the **U(N) curve** for the realisable level set, to 100,000 frames, warm and cold;
+- the finding that it is **invariant at 259 when settled** and **spuriously increasing when
+  warming** — so any published cardinality without a stated thermal state is uninterpretable;
 - the two **failed controls**, with protocols, as labelled negative results;
 - all of it on a **named unit** (serial, driver, mode, USB topology) so it can be contested.
+
+**A detector bug of ours, recorded because it nearly inverted the conclusion:** the drift control
+compared the *first* patch reading against the *last* and reported "CONFOUNDED" on a run that was
+stationary for 50,000 frames and moved only at the final checkpoint. An endpoint comparison cannot
+distinguish slow drift from a discrete scene change. Stability must be checked across the whole
+series, not at its ends.
 
 **Known tension to resolve:** a 2014 blog (Byte Kitchen) asserts 345 unique depths for
 Kinect-for-Windows default range and 781 for an Xbox unit, without stating accumulation
