@@ -8,13 +8,13 @@ status. Corrections are listed first. Single device, single host, one operator �
 - **Depth comes in rungs, not a smooth scale.** The SDK's millimetres hide an integer disparity lattice uniform in 1/z; between
   1 and 4 m a warmed-up sensor emits only **259** distinct values. A cold sensor seems to keep "finding" new ones — that is thermal
   drift, not information. (The v1 card below.)
-- **"The noise" is three different populations.** Per-pixel temporal noise has a median of **2.6 mm** but an RMS of **38 mm**:
+- **"The noise" is three different populations** (measured at ~3 m; the split depends on range, v2.0.1). Per-pixel temporal noise has a median of **2.6 mm** but an RMS of **38 mm**:
   about half the pixels are **pinned** (1–3 mm, far below one rung), a quarter to a third **dither** between two adjacent rungs, and
   about **1 %** are **catastrophic** (edges, grazing angles, IR-absorbing surfaces) and carry **95 %** of the variance. Masking pixels
   whose temporal sigma exceeds 10 mm keeps ~73 % of a flat target and removes 99.4 % of the variance.
-- **Averaging frames buys much less than √N.** The noise is correlated in time: integrated autocorrelation time **2.74 s**
-  (≈ 85 frames), so N frames are worth about N/85 independent samples. The correlation is physical, not SDK smoothing (the
-  autocorrelation is flat from lag 1 to 8).
+- **Averaging frames buys less than √N.** Depth noise is correlated in time, but part of that is slow drift: the raw integrated
+  correlation time is 2.74 s, while after removing a 20 s trend the autocorrelation is only ~0.15 at lags 1–8 and gone by ~3 s
+  (v2.0.1 correction). The short-range part is flat from lag 1 to 8, so it is not SDK frame smoothing.
 - **It drifts while warming up.** +8.2 mm over the first 6 minutes at 2.5 m, settling to ~0.02 mm/min after about an hour.
 - **Hidden capabilities, and hard limits.** `COLOR_RAW_BAYER` at 1280×960 is genuinely raw, linear, un-white-balanced sensor data;
   IR is 640×480 only and 10-bit (the low 6 bits are always zero); near mode and projector-off are **rejected** on Xbox hardware
@@ -25,6 +25,13 @@ status. Corrections are listed first. Single device, single host, one operator �
 
 ## Corrections (read first)
 
+- **v2.0.1 (same evening) — the 2.74 s correlation time is qualified.** A 90 s capture of a still scene on a warmed sensor at ~1 m
+  (`acf_gate.py`, rule fixed before looking): the raw autocorrelation is 0.58 / 0.52 / 0.38 / 0.24 at lags 1 / 8 / 30 / 90 frames, but
+  after removing a 20 s moving mean it is only 0.16 / 0.13 / 0.08 / 0.02. Much of the published 2.74 s is slow drift leaking into
+  the estimator; a smaller genuinely correlated component remains (flat from lag 1 to 8, gone by ~3 s). Quote the detrended curve.
+- **v2.0.1 — the noise-population split is range-dependent.** The pinned / dithering / catastrophic numbers were measured at a median
+  range of 2.9 m, where one lattice step is ~25 mm. At ~1 m (step ~3 mm) 94 % of valid pixels visit three or more values in 90 s,
+  so "about half the pixels are pinned" holds only where the step is large compared with the noise.
 - **Retracted: "averaging beats quantisation 12.5×".** That came from an interleaved split-half, valid only for white noise. With
   consecutive blocks the honest gain is **~1.8×** (about 6 mm at N = 180). Never quote precision from an interleaved split.
 - **Withdrawn: the word "accuracy" for plane-fit results.** A plane fitted over many pixels is a spatial estimator, not point
@@ -38,10 +45,10 @@ status. Corrections are listed first. Single device, single host, one operator �
 
 | finding | number | status | script |
 |---|---|---|---|
-| three noise populations; σ > 10 mm mask | median 2.62 mm, RMS 38.06 mm; worst 1 % = 94.9 % of variance | HOLDS (static scenes) | `analyse_sigma.py`, `sigma_n.py` |
+| three noise populations; σ > 10 mm mask | median 2.62 mm, RMS 38.06 mm; worst 1 % = 94.9 % of variance (median range 2.9 m) | HOLDS at ~3 m; range-dependent (v2.0.1) | `analyse_sigma.py`, `sigma_n.py` |
 | per-pixel σ predicted by range alone | σ ∝ z^1.80, R² 0.574, held-out median rel. error 25.8 % | HOLDS | `predictor.py` |
 | the IR image does not predict σ | +0.0027 R² over range alone | NEGATIVE (the control was the result) | `predictor.py` |
-| temporal correlation | τ_int = 84.9 frames = 2.74 s; ~81 % white + ~19 % slow | HOLDS | `correlated.py`, `neff.py` |
+| temporal correlation | raw τ_int = 84.9 frames = 2.74 s, but detrended (20 s) ACF only 0.16 → 0.02 over 1–90 frames | QUALIFIED (v2.0.1: drift inflates the raw figure) | `correlated.py`, `neff.py`, `acf_gate.py` |
 | warm-up drift | +8.17 mm / 6 min at 2.5 m → +0.02 mm/min by ~70 min; one unexplained ~4 mm excursion | HOLDS / OPEN | `drift.py`, `warmup.py` |
 | raw Bayer 1280×960 | genuinely raw (lag-2 > lag-1 autocorrelation, 12.9 % phase-mean spread) | HOLDS | `bayer.py` |
 | stream capability map | 10 of 28 (type, resolution) pairs open; no 1280×960 IR | HOLDS | `capmap.py` |
