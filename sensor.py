@@ -5,9 +5,16 @@ The flat Kinect10.dll API (nui.py) exposes only 25 functions. The real capabilit
 surface lives on the INuiSensor COM interface, which the flat API never reaches:
 
     31  NuiGetForceInfraredEmitterOff     <- projector on/off
-    32  NuiSetForceInfraredEmitterOff        turning it off makes the IR camera
-                                             a passive 830nm NIR camera
-    33  NuiAccelerometerGetCurrentReading <- raw 3-axis g, not the 1-degree tilt
+    32  NuiSetForceInfraredEmitterOff        rejected on Xbox 360 hardware with 0x8301000F
+                                             (E_NUI_HARDWARE_FEATURE_UNAVAILABLE; Microsoft documents
+                                             it as Kinect-for-Windows only), so the projector cannot
+                                             be switched off and there is no passive-IR mode here
+                                             (v2.1 correction: an earlier version of this docstring
+                                             said it made the IR camera a passive NIR camera)
+    33  NuiAccelerometerGetCurrentReading <- 3-axis gravity vector in g, not the 1-degree tilt.
+                                             On this unit every value is an integer count / 819
+                                             exactly (no per-unit calibration applied; |g| reads
+                                             1.015-1.018 at rest) -- atlas/accel_probe.py
 
 Vtable indices are taken from the SDK's own NuiSensor.h (struct INuiSensorVtbl),
 not guessed.
@@ -101,7 +108,7 @@ class Sensor:
             "NuiSetForceInfraredEmitterOff")
 
     def accelerometer(self):
-        """Raw 3-axis reading in g. Gravity shows as ~1.0 on the down axis."""
+        """3-axis reading in g (integer count / 819, uncalibrated). Gravity shows as ~1.0 on the down axis."""
         v = Vector4()
         _hr(self._call(V_ACCELEROMETER, _F_accel)(self.p, C.byref(v)),
             "NuiAccelerometerGetCurrentReading")

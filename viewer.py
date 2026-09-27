@@ -8,7 +8,7 @@ removes 99.4% of the variance while keeping 72.6% of the pixels.
 KEYS
   1  DEPTH       colourised range
   2  IR          10-bit infrared, correctly unpacked (low 6 bits are structurally zero)
-  3  BAYER       raw 1280x960 undebayered sensor data
+  3  BAYER       1280x960 un-demosaiced GRBG mosaic (on-chip white-balance gain; see README)
   4  CONFIDENCE  green = sigma<=10mm (keep) / red = masked
   5  STABILITY   live per-pixel temporal sigma, rolling 60-frame window
   6  LATTICE     which disparity level each pixel sits on -- the shells, made visible
@@ -25,9 +25,9 @@ from PIL import Image, ImageTk
 from matplotlib import colormaps
 
 SHIFT      = 3
-STEP       = 2.895897e-06     # 1/mm, fitted disparity grid step   (FINDINGS s2)
-INTERCEPT  = 4.977113e-04     # 1/mm, grid intercept -- NOT zero   (FINDINGS s13.2)
-SIGMA_GATE = 10.0             # mm; masking above this drops 99.4% of variance (s14.3)
+STEP       = 0.1042 / 36000.0 # 1/mm, exact disparity step of PrimeSense's shift-to-depth table (lattice_closure.py)
+INTERCEPT  = 1.0 / 1200.0     # 1/mm, the 1200 mm reference plane is rung 0 (v2.1: were the fitted 2.895897e-06 / 4.977113e-04)
+SIGMA_GATE = 10.0             # mm; masking above this drops 99.4% of variance (README, noise populations)
 WIN        = 60
 Z_LO, Z_HI = 500.0, 4000.0
 NAMES = {1: "DEPTH", 2: "IR", 3: "BAYER", 4: "CONFIDENCE", 5: "STABILITY", 6: "LATTICE"}
@@ -195,7 +195,7 @@ class Panel:
                     rgb[np.nan_to_num(sig, nan=1e9) > SIGMA_GATE] = (70, 0, 0)
                 # NEAR-EDGE READOUT: nearest valid depth in the centre box.
                 # Move an object slowly AWAY until depth appears; this reads the
-                # distance at which it switched on. (FINDINGS s15.5 experiment)
+                # distance at which it switched on (the packed stream's floor is the SDK's 800 mm clamp: 801 mm).
                 h, w = z.shape
                 cy, cx = h // 2, w // 2
                 box = z[cy - 80:cy + 80, cx - 80:cx + 80]
@@ -236,7 +236,7 @@ class Panel:
 
             else:  # 6 LATTICE
                 with np.errstate(divide='ignore', invalid='ignore'):
-                    lvl = (INTERCEPT - 1.0 / np.where(z > 0, z, np.nan)) / STEP
+                    lvl = (INTERCEPT - 1.0 / np.where(z > 0, z + 0.5, np.nan)) / STEP   # z is floored: use the bin centre
                 band = np.mod(np.round(np.nan_to_num(lvl, nan=0.0)), 6) / 5.0
                 rgb = apply_lut(band, LUT_D, bad)
                 fin = np.isfinite(lvl)
@@ -250,7 +250,7 @@ class Panel:
                 if 0 <= py < z.shape[0] and 0 <= px < z.shape[1]:
                     if z[py, px] > 0:
                         zz = float(z[py, px])
-                        lv = (INTERCEPT - 1.0 / zz) / STEP
+                        lv = (INTERCEPT - 1.0 / (zz + 0.5)) / STEP
                         ss = ("%.2f mm" % sig[py, px]) if (
                             sig is not None and np.isfinite(sig[py, px])) else "n/a"
                         extra += ("\nprobe (%d,%d)  z=%.0f mm  level=%.1f  "

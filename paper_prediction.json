@@ -1,0 +1,6 @@
+{
+ "made": "2026-09-27T00:18:16",
+ "reference": "US Letter sheet, manufactured 215.9 x 279.4 mm (8.5 x 11 in; ~+-1 mm), taped flat on the box's black face, box upright facing the Kinect at ~1 m",
+ "method": "IR image (same camera as depth): paper edges = half-level crossings between paper and black-print IR levels, on profiles averaged over the middle half of each edge; size_px = right-left (and bottom-top); z = plane fit of the box-face depth evaluated at the paper centre; size_mm = size_px * z / f, f = 571.26 px (SDK nominal) and 575.82 px (from the 120/0.1042 constants), both reported; also implied f = size_px * z / true_mm per axis.",
+ "rule": "sealed before capture: with f = 571.26, BOTH paper dimensions within +-1.5 % -> DEPTH-CAMERA SCALE OK at 1.5 % (the box's -3.8 % was its reference); BOTH <= -3 % -> SCALE SHORT (box result reproduced with a manufactured reference); otherwise no verdict. If the paper's IR edges are not clean (half-level crossing ambiguous by > 2 px on any edge), the test is void."
+}

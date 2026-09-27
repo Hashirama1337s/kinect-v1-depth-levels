@@ -1,0 +1,28 @@
+{
+ "tag": "t2trim",
+ "pixels": 4743,
+ "observations": 1193748,
+ "codes_used": 30,
+ "z_range_mm": [
+  971,
+  1111
+ ],
+ "fold8": [
+  -0.0687,
+  0.2783,
+  0.2048,
+  -0.2308,
+  -0.1595,
+  0.172,
+  0.2186,
+  -0.1362
+ ],
+ "A8": 0.2783,
+ "p8": 0.1015449227538623,
+ "extreme_bin": 1,
+ "A7_control": 0.0782,
+ "A9_control": 0.1398,
+ "dnl_rms_all": 0.2145,
+ "gradient_angle_deg": 48.7,
+ "valid_setup": false
+}

@@ -1,0 +1,6 @@
+{
+ "made": "2026-09-27T00:33:51",
+ "reference": "a 'regular' letter envelope on an IR-dark black backing; assumed US #10 = 4.125 x 9.5 in = 104.8 x 241.3 mm (manufacturing ~+-1.6 mm); #9 = 98.4 x 225.4 mm as the alternative; owner to confirm the type by a rough tape check (9.5 vs 8.875 in)",
+ "method": "IR image (same camera as depth), 20-frame mean, 3x3 smoothing: envelope edges = half-level crossings between envelope and black-backing IR levels on profiles averaged over the middle half of each edge; z = plane fit of the backing depth around the envelope (envelope assumed on the backing plane); size_mm = px * z / f, f = 571.26 and 575.82 reported.",
+ "rule": "sealed before measuring: VOID if any edge crossing is ambiguous by > 1 px, if the envelope touches the frame of the backing, or if the measured aspect ratio (f-free) is > 3 % from 2.302 (#10) and from 2.291 (#9). Otherwise, with f = 571.26: long side within +-1.5 % of the confirmed type -> DEPTH-CAMERA SCALE OK; <= -3 % -> SCALE SHORT; else no verdict."
+}

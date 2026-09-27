@@ -5,7 +5,7 @@ Talks to the Kinect v1 (PrimeSense PS1080) flat NUI C API with no wrapper librar
 All 25 exports of Kinect10.dll are undecorated x64 C symbols, so ctypes reaches
 them directly.
 
-DESIGN RULES (learned the hard way on this drive):
+DESIGN RULES (learned the hard way):
   - Never silently return a value. Every HRESULT is checked and raised.
   - Frame buffers are COPIED out before UnlockRect. The SDK reuses that memory;
     holding a numpy view onto it gives you data that mutates under you.
@@ -42,10 +42,12 @@ FLAG_SUPPRESS_NO_FRAME_DATA          = 0x00010000
 FLAG_ENABLE_NEAR_MODE                = 0x00020000
 FLAG_DISTINCT_OVERFLOW_DEPTH_VALUES  = 0x00040000
 
-# depth sentinel values (SDK 1.8, only with DISTINCT_OVERFLOW flag)
-DEPTH_TOO_NEAR  = 0xFFF9
-DEPTH_TOO_FAR   = 0xFFF8
-DEPTH_UNKNOWN   = 0xFFF7
+# depth sentinel values of the PACKED depth stream (SDK 1.8 NuiImageCamera.h; distinct only with the
+# DISTINCT_OVERFLOW flag, otherwise every out-of-range pixel is 0). After >> 3: 0 / 4095 / 8191.
+# v2.1 fix: earlier versions had 0xFFF9 / 0xFFF8 / 0xFFF7 here; no script used them (atlas/depth_flags_probe.py).
+DEPTH_TOO_NEAR  = 0x0000
+DEPTH_TOO_FAR   = 0x7FF8          # NUI_IMAGE_DEPTH_TOO_FAR_VALUE = 0x0FFF << 3
+DEPTH_UNKNOWN   = 0xFFF8          # NUI_IMAGE_DEPTH_UNKNOWN_VALUE = 0x1FFF << 3
 
 # ---------------------------------------------------------------- structs
 class NUI_IMAGE_FRAME(C.Structure):
@@ -105,7 +107,8 @@ def sensor_count():
     return n.value
 
 def elevation_angle():
-    """Tilt in degrees, derived from the internal KXSD9 accelerometer."""
+    """Tilt in whole degrees relative to gravity (from the internal accelerometer; a Kionix KXSD9 per the
+    iFixit teardown, not verified on this unit)."""
     a = C.c_long(0)
     _hr(_dll.NuiCameraElevationGetAngle(C.byref(a)), "NuiCameraElevationGetAngle")
     return a.value

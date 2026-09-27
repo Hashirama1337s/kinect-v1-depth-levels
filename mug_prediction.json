@@ -1,0 +1,12 @@
+{
+ "made": "2026-09-27T00:05:46",
+ "object": "black glossy ceramic mug, 87 x 85 mm (hand), on a brown napkin on the glass desk",
+ "sdk_front_depth_mm": 1066,
+ "silhouette_px": {
+  "width_mid_body": 50,
+  "height_rim_to_base": 54
+ },
+ "MIRROR hypothesis (depth reads too far; silhouette true)": "tape from the Kinect front face to the mug's nearest point ~= 905-935 mm (35.6-36.8 in)",
+ "EDGE-FATTENING hypothesis (depth right; silhouette ~3 px/edge too big)": "tape ~= 1040-1070 mm (40.9-42.1 in)",
+ "rule": "sealed before the tape reading: tape within the MIRROR band (+-1 in) and > 2 in outside the other -> MIRROR; vice versa -> EDGE-FATTENING; else no verdict. Depth origin sits a few mm to ~2 cm behind the Kinect's front face (hence the bands)."
+}

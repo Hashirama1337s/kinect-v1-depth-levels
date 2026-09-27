@@ -1,0 +1,1351 @@
+{
+ "child_exit_codes": {
+  "live": 0,
+  "control": 0,
+  "const_shift_220": 0,
+  "ax_x1.05": 0,
+  "zpd_130": 0,
+  "zpps_x1.05": 0,
+  "dx_start_+512": 0,
+  "dy_start_+512": 0,
+  "dx_center_0": 0,
+  "table2051_-100": 0,
+  "table4096_half": 0,
+  "zpd_step5_at_2047": 0,
+  "zpd_step5_at_2048": 0,
+  "zpd_step5_at_2049": 0
+ },
+ "variants": {
+  "const_shift_220": {
+   "description": "int32 const_shift @12600: 200 -> 220",
+   "required": true,
+   "exit": 0,
+   "colour_points_changed_frac": 0.0,
+   "colour_dx_mean_by_Z": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "colour_dy_mean_by_Z": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "colour_dx_range": [
+    0,
+    0
+   ],
+   "colour_dy_range": [
+    0,
+    0
+   ],
+   "frame2000_changed_frac": 0.0,
+   "frame2000_dx_fit_const_perx_pery": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "frame2000_dy_fit_const_perx_pery": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "skeleton_max_abs_diff_xyz_m": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "skeleton_identical": true,
+   "sweep_steps_changed": false,
+   "sweep_steps": [
+    301,
+    308,
+    315,
+    322,
+    330,
+    338,
+    346,
+    355,
+    365,
+    374,
+    385,
+    396,
+    408,
+    420,
+    433,
+    447,
+    462,
+    478,
+    495,
+    513,
+    533,
+    554,
+    577,
+    603,
+    630,
+    660,
+    693,
+    730,
+    770,
+    816,
+    867,
+    925,
+    991,
+    1067,
+    1157,
+    1269,
+    1398,
+    1555,
+    1752,
+    2006
+   ],
+   "sweep_x_offset_vs_control": [
+    0
+   ],
+   "params_back_equal": true,
+   "focal": {
+    "f_x": 571.2653103844723,
+    "cx": 319.9999990009242,
+    "f_y": 571.2653351321086,
+    "cy": 239.99999980411113,
+    "rms_resid_x_px": 6.17250711205092e-06,
+    "rms_resid_y_px": 1.0068471208663786e-05,
+    "Z_over_depth_m": 1.0000000074505806
+   },
+   "model_prediction": {
+    "sweep_exact": 1.0,
+    "frame_change_x_match": 1.0,
+    "frame_change_y_match": 1.0
+   }
+  },
+  "ax_x1.05": {
+   "description": "reg_info ax: 1556 -> 1634 (x1.05)",
+   "required": true,
+   "exit": 0,
+   "colour_points_changed_frac": 0.37104072398190047,
+   "colour_dx_mean_by_Z": [
+    -0.4298642533936652,
+    -0.4298642533936652,
+    -0.4298642533936652,
+    -0.4298642533936652,
+    -0.4298642533936652,
+    -0.4298642533936652
+   ],
+   "colour_dy_mean_by_Z": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "colour_dx_range": [
+    -2,
+    0
+   ],
+   "colour_dy_range": [
+    0,
+    0
+   ],
+   "frame2000_changed_frac": 0.3547265625,
+   "frame2000_dx_fit_const_perx_pery": [
+    -0.3917708533370139,
+    0.002211042270916181,
+    2.459388387101788e-06
+   ],
+   "frame2000_dy_fit_const_perx_pery": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "skeleton_max_abs_diff_xyz_m": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "skeleton_identical": true,
+   "sweep_steps_changed": false,
+   "sweep_steps": [
+    301,
+    308,
+    315,
+    322,
+    330,
+    338,
+    346,
+    355,
+    365,
+    374,
+    385,
+    396,
+    408,
+    420,
+    433,
+    447,
+    462,
+    478,
+    495,
+    513,
+    533,
+    554,
+    577,
+    603,
+    630,
+    660,
+    693,
+    730,
+    770,
+    816,
+    867,
+    925,
+    991,
+    1067,
+    1157,
+    1269,
+    1398,
+    1555,
+    1752,
+    2006
+   ],
+   "sweep_x_offset_vs_control": [
+    0
+   ],
+   "params_back_equal": true,
+   "focal": {
+    "f_x": 571.2653103844723,
+    "cx": 319.9999990009242,
+    "f_y": 571.2653351321086,
+    "cy": 239.99999980411113,
+    "rms_resid_x_px": 6.17250711205092e-06,
+    "rms_resid_y_px": 1.0068471208663786e-05,
+    "Z_over_depth_m": 1.0000000074505806
+   },
+   "model_prediction": {
+    "sweep_exact": 1.0,
+    "frame_change_x_match": 0.9751822916666667,
+    "frame_change_y_match": 1.0
+   }
+  },
+  "zpd_130": {
+   "description": "float32 zero-plane distance @12532: 120.0 -> 130.0",
+   "required": true,
+   "exit": 0,
+   "colour_points_changed_frac": 0.8333333333333334,
+   "colour_dx_mean_by_Z": [
+    1.0,
+    2.0,
+    1.0,
+    0.0,
+    1.0,
+    1.0
+   ],
+   "colour_dy_mean_by_Z": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "colour_dx_range": [
+    0,
+    2
+   ],
+   "colour_dy_range": [
+    0,
+    0
+   ],
+   "frame2000_changed_frac": 0.0,
+   "frame2000_dx_fit_const_perx_pery": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "frame2000_dy_fit_const_perx_pery": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "skeleton_max_abs_diff_xyz_m": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "skeleton_identical": true,
+   "sweep_steps_changed": true,
+   "sweep_steps": [
+    306,
+    313,
+    319,
+    326,
+    334,
+    341,
+    349,
+    357,
+    366,
+    375,
+    385,
+    395,
+    406,
+    417,
+    429,
+    441,
+    455,
+    469,
+    484,
+    500,
+    518,
+    536,
+    556,
+    577,
+    600,
+    626,
+    653,
+    682,
+    715,
+    751,
+    790,
+    834,
+    884,
+    939,
+    1002,
+    1073,
+    1156,
+    1253,
+    1375,
+    1514,
+    1684,
+    1898
+   ],
+   "sweep_x_offset_vs_control": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "params_back_equal": true,
+   "focal": {
+    "f_x": 571.2653103844723,
+    "cx": 319.9999990009242,
+    "f_y": 571.2653351321086,
+    "cy": 239.99999980411113,
+    "rms_resid_x_px": 6.17250711205092e-06,
+    "rms_resid_y_px": 1.0068471208663786e-05,
+    "Z_over_depth_m": 1.0000000074505806
+   },
+   "model_prediction": {
+    "sweep_exact": 1.0,
+    "frame_change_x_match": 1.0,
+    "frame_change_y_match": 1.0
+   }
+  },
+  "zpps_x1.05": {
+   "description": "float32 zero-plane pixel size @12536: 0.1042 -> 0.10941 (x1.05)",
+   "required": false,
+   "exit": 0,
+   "colour_points_changed_frac": 0.3333333333333333,
+   "colour_dx_mean_by_Z": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0
+   ],
+   "colour_dy_mean_by_Z": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "colour_dx_range": [
+    0,
+    1
+   ],
+   "colour_dy_range": [
+    0,
+    0
+   ],
+   "frame2000_changed_frac": 0.0,
+   "frame2000_dx_fit_const_perx_pery": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "frame2000_dy_fit_const_perx_pery": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "skeleton_max_abs_diff_xyz_m": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "skeleton_identical": true,
+   "sweep_steps_changed": true,
+   "sweep_steps": [
+    304,
+    311,
+    318,
+    326,
+    335,
+    343,
+    352,
+    362,
+    372,
+    383,
+    394,
+    407,
+    420,
+    433,
+    448,
+    464,
+    481,
+    499,
+    519,
+    540,
+    563,
+    588,
+    615,
+    646,
+    679,
+    716,
+    757,
+    803,
+    855,
+    914,
+    982,
+    1061,
+    1154,
+    1273,
+    1409,
+    1578,
+    1793
+   ],
+   "sweep_x_offset_vs_control": [
+    -2,
+    -1,
+    0,
+    1
+   ],
+   "params_back_equal": true,
+   "focal": {
+    "f_x": 571.2653103844723,
+    "cx": 319.9999990009242,
+    "f_y": 571.2653351321086,
+    "cy": 239.99999980411113,
+    "rms_resid_x_px": 6.17250711205092e-06,
+    "rms_resid_y_px": 1.0068471208663786e-05,
+    "Z_over_depth_m": 1.0000000074505806
+   },
+   "model_prediction": {
+    "sweep_exact": 1.0,
+    "frame_change_x_match": 1.0,
+    "frame_change_y_match": 1.0
+   }
+  },
+  "dx_start_+512": {
+   "description": "reg_info dx_start: 4528 -> 5040 (+2 px in libfreenect scaling)",
+   "required": false,
+   "exit": 0,
+   "colour_points_changed_frac": 1.0,
+   "colour_dx_mean_by_Z": [
+    -2.0,
+    -2.0,
+    -2.0,
+    -2.0,
+    -2.0,
+    -2.0
+   ],
+   "colour_dy_mean_by_Z": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "colour_dx_range": [
+    -2,
+    -2
+   ],
+   "colour_dy_range": [
+    0,
+    0
+   ],
+   "frame2000_changed_frac": 1.0,
+   "frame2000_dx_fit_const_perx_pery": [
+    -1.9999999999999887,
+    -1.9846248593587622e-19,
+    -2.6292248365983653e-19
+   ],
+   "frame2000_dy_fit_const_perx_pery": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "skeleton_max_abs_diff_xyz_m": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "skeleton_identical": true,
+   "sweep_steps_changed": false,
+   "sweep_steps": [
+    301,
+    308,
+    315,
+    322,
+    330,
+    338,
+    346,
+    355,
+    365,
+    374,
+    385,
+    396,
+    408,
+    420,
+    433,
+    447,
+    462,
+    478,
+    495,
+    513,
+    533,
+    554,
+    577,
+    603,
+    630,
+    660,
+    693,
+    730,
+    770,
+    816,
+    867,
+    925,
+    991,
+    1067,
+    1157,
+    1269,
+    1398,
+    1555,
+    1752,
+    2006
+   ],
+   "sweep_x_offset_vs_control": [
+    -2
+   ],
+   "params_back_equal": true,
+   "focal": {
+    "f_x": 571.2653103844723,
+    "cx": 319.9999990009242,
+    "f_y": 571.2653351321086,
+    "cy": 239.99999980411113,
+    "rms_resid_x_px": 6.17250711205092e-06,
+    "rms_resid_y_px": 1.0068471208663786e-05,
+    "Z_over_depth_m": 1.0000000074505806
+   },
+   "model_prediction": {
+    "sweep_exact": 1.0,
+    "frame_change_x_match": 1.0,
+    "frame_change_y_match": 1.0
+   }
+  },
+  "dy_start_+512": {
+   "description": "reg_info dy_start: 6449 -> 6961 (+2 px in libfreenect scaling)",
+   "required": false,
+   "exit": 0,
+   "colour_points_changed_frac": 1.0,
+   "colour_dx_mean_by_Z": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "colour_dy_mean_by_Z": [
+    2.0,
+    2.0,
+    2.0,
+    2.0,
+    2.0,
+    2.0
+   ],
+   "colour_dx_range": [
+    0,
+    0
+   ],
+   "colour_dy_range": [
+    2,
+    2
+   ],
+   "frame2000_changed_frac": 1.0,
+   "frame2000_dx_fit_const_perx_pery": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "frame2000_dy_fit_const_perx_pery": [
+    1.9999999999999887,
+    1.9846248593587622e-19,
+    2.6292248365983653e-19
+   ],
+   "skeleton_max_abs_diff_xyz_m": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "skeleton_identical": true,
+   "sweep_steps_changed": false,
+   "sweep_steps": [
+    301,
+    308,
+    315,
+    322,
+    330,
+    338,
+    346,
+    355,
+    365,
+    374,
+    385,
+    396,
+    408,
+    420,
+    433,
+    447,
+    462,
+    478,
+    495,
+    513,
+    533,
+    554,
+    577,
+    603,
+    630,
+    660,
+    693,
+    730,
+    770,
+    816,
+    867,
+    925,
+    991,
+    1067,
+    1157,
+    1269,
+    1398,
+    1555,
+    1752,
+    2006
+   ],
+   "sweep_x_offset_vs_control": [
+    0
+   ],
+   "params_back_equal": true,
+   "focal": {
+    "f_x": 571.2653103844723,
+    "cx": 319.9999990009242,
+    "f_y": 571.2653351321086,
+    "cy": 239.99999980411113,
+    "rms_resid_x_px": 6.17250711205092e-06,
+    "rms_resid_y_px": 1.0068471208663786e-05,
+    "Z_over_depth_m": 1.0000000074505806
+   },
+   "model_prediction": {
+    "sweep_exact": 1.0,
+    "frame_change_x_match": 1.0,
+    "frame_change_y_match": 1.0
+   }
+  },
+  "dx_center_0": {
+   "description": "reg_info dx_center (unused in libfreenect) -> 0",
+   "required": false,
+   "exit": 0,
+   "colour_points_changed_frac": 0.0,
+   "colour_dx_mean_by_Z": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "colour_dy_mean_by_Z": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "colour_dx_range": [
+    0,
+    0
+   ],
+   "colour_dy_range": [
+    0,
+    0
+   ],
+   "frame2000_changed_frac": 0.0,
+   "frame2000_dx_fit_const_perx_pery": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "frame2000_dy_fit_const_perx_pery": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "skeleton_max_abs_diff_xyz_m": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "skeleton_identical": true,
+   "sweep_steps_changed": false,
+   "sweep_steps": [
+    301,
+    308,
+    315,
+    322,
+    330,
+    338,
+    346,
+    355,
+    365,
+    374,
+    385,
+    396,
+    408,
+    420,
+    433,
+    447,
+    462,
+    478,
+    495,
+    513,
+    533,
+    554,
+    577,
+    603,
+    630,
+    660,
+    693,
+    730,
+    770,
+    816,
+    867,
+    925,
+    991,
+    1067,
+    1157,
+    1269,
+    1398,
+    1555,
+    1752,
+    2006
+   ],
+   "sweep_x_offset_vs_control": [
+    0
+   ],
+   "params_back_equal": true,
+   "focal": {
+    "f_x": 571.2653103844723,
+    "cx": 319.9999990009242,
+    "f_y": 571.2653351321086,
+    "cy": 239.99999980411113,
+    "rms_resid_x_px": 6.17250711205092e-06,
+    "rms_resid_y_px": 1.0068471208663786e-05,
+    "Z_over_depth_m": 1.0000000074505806
+   },
+   "model_prediction": {
+    "sweep_exact": 1.0,
+    "frame_change_x_match": 1.0,
+    "frame_change_y_match": 1.0
+   }
+  },
+  "table2051_-100": {
+   "description": "uint16 table @20 (2051 words): each value -100, floored at 0",
+   "required": false,
+   "exit": 0,
+   "colour_points_changed_frac": 0.0,
+   "colour_dx_mean_by_Z": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "colour_dy_mean_by_Z": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "colour_dx_range": [
+    0,
+    0
+   ],
+   "colour_dy_range": [
+    0,
+    0
+   ],
+   "frame2000_changed_frac": 0.0,
+   "frame2000_dx_fit_const_perx_pery": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "frame2000_dy_fit_const_perx_pery": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "skeleton_max_abs_diff_xyz_m": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "skeleton_identical": true,
+   "sweep_steps_changed": false,
+   "sweep_steps": [
+    301,
+    308,
+    315,
+    322,
+    330,
+    338,
+    346,
+    355,
+    365,
+    374,
+    385,
+    396,
+    408,
+    420,
+    433,
+    447,
+    462,
+    478,
+    495,
+    513,
+    533,
+    554,
+    577,
+    603,
+    630,
+    660,
+    693,
+    730,
+    770,
+    816,
+    867,
+    925,
+    991,
+    1067,
+    1157,
+    1269,
+    1398,
+    1555,
+    1752,
+    2006
+   ],
+   "sweep_x_offset_vs_control": [
+    0
+   ],
+   "params_back_equal": true,
+   "focal": {
+    "f_x": 571.2653103844723,
+    "cx": 319.9999990009242,
+    "f_y": 571.2653351321086,
+    "cy": 239.99999980411113,
+    "rms_resid_x_px": 6.17250711205092e-06,
+    "rms_resid_y_px": 1.0068471208663786e-05,
+    "Z_over_depth_m": 1.0000000074505806
+   },
+   "model_prediction": {
+    "sweep_exact": 1.0,
+    "frame_change_x_match": 1.0,
+    "frame_change_y_match": 1.0
+   }
+  },
+  "table4096_half": {
+   "description": "uint16 table @4122 (4096 entries): each value halved",
+   "required": false,
+   "exit": 0,
+   "colour_points_changed_frac": 0.0,
+   "colour_dx_mean_by_Z": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "colour_dy_mean_by_Z": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "colour_dx_range": [
+    0,
+    0
+   ],
+   "colour_dy_range": [
+    0,
+    0
+   ],
+   "frame2000_changed_frac": 0.0,
+   "frame2000_dx_fit_const_perx_pery": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "frame2000_dy_fit_const_perx_pery": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "skeleton_max_abs_diff_xyz_m": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "skeleton_identical": true,
+   "sweep_steps_changed": false,
+   "sweep_steps": [
+    301,
+    308,
+    315,
+    322,
+    330,
+    338,
+    346,
+    355,
+    365,
+    374,
+    385,
+    396,
+    408,
+    420,
+    433,
+    447,
+    462,
+    478,
+    495,
+    513,
+    533,
+    554,
+    577,
+    603,
+    630,
+    660,
+    693,
+    730,
+    770,
+    816,
+    867,
+    925,
+    991,
+    1067,
+    1157,
+    1269,
+    1398,
+    1555,
+    1752,
+    2006
+   ],
+   "sweep_x_offset_vs_control": [
+    0
+   ],
+   "params_back_equal": true,
+   "focal": {
+    "f_x": 571.2653103844723,
+    "cx": 319.9999990009242,
+    "f_y": 571.2653351321086,
+    "cy": 239.99999980411113,
+    "rms_resid_x_px": 6.17250711205092e-06,
+    "rms_resid_y_px": 1.0068471208663786e-05,
+    "Z_over_depth_m": 1.0000000074505806
+   },
+   "model_prediction": {
+    "sweep_exact": 1.0,
+    "frame_change_x_match": 1.0,
+    "frame_change_y_match": 1.0
+   }
+  },
+  "zpd_step5_at_2047": {
+   "description": "zero-plane distance 122.4617: formula's 5th shift step at 2047 mm",
+   "required": false,
+   "exit": 0,
+   "colour_points_changed_frac": 0.16666666666666666,
+   "colour_dx_mean_by_Z": [
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "colour_dy_mean_by_Z": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "colour_dx_range": [
+    0,
+    1
+   ],
+   "colour_dy_range": [
+    0,
+    0
+   ],
+   "frame2000_changed_frac": 0.0,
+   "frame2000_dx_fit_const_perx_pery": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "frame2000_dy_fit_const_perx_pery": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "skeleton_max_abs_diff_xyz_m": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "skeleton_identical": true,
+   "sweep_steps_changed": true,
+   "sweep_steps": [
+    301,
+    307,
+    314,
+    321,
+    329,
+    337,
+    345,
+    353,
+    363,
+    372,
+    382,
+    393,
+    404,
+    416,
+    428,
+    442,
+    456,
+    471,
+    488,
+    505,
+    524,
+    544,
+    566,
+    589,
+    615,
+    643,
+    674,
+    707,
+    745,
+    786,
+    832,
+    884,
+    944,
+    1011,
+    1089,
+    1180,
+    1295,
+    1426,
+    1587,
+    1788,
+    2047
+   ],
+   "sweep_x_offset_vs_control": [
+    0,
+    1
+   ],
+   "params_back_equal": true,
+   "focal": {
+    "f_x": 571.2653103844723,
+    "cx": 319.9999990009242,
+    "f_y": 571.2653351321086,
+    "cy": 239.99999980411113,
+    "rms_resid_x_px": 6.17250711205092e-06,
+    "rms_resid_y_px": 1.0068471208663786e-05,
+    "Z_over_depth_m": 1.0000000074505806
+   },
+   "model_prediction": {
+    "sweep_exact": 1.0,
+    "frame_change_x_match": 1.0,
+    "frame_change_y_match": 1.0
+   }
+  },
+  "zpd_step5_at_2048": {
+   "description": "zero-plane distance 122.5216: formula's 5th shift step at 2048 mm",
+   "required": false,
+   "exit": 0,
+   "colour_points_changed_frac": 0.5,
+   "colour_dx_mean_by_Z": [
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0
+   ],
+   "colour_dy_mean_by_Z": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "colour_dx_range": [
+    0,
+    1
+   ],
+   "colour_dy_range": [
+    0,
+    0
+   ],
+   "frame2000_changed_frac": 0.0,
+   "frame2000_dx_fit_const_perx_pery": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "frame2000_dy_fit_const_perx_pery": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "skeleton_max_abs_diff_xyz_m": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "skeleton_identical": true,
+   "sweep_steps_changed": true,
+   "sweep_steps": [
+    301,
+    308,
+    314,
+    322,
+    329,
+    337,
+    345,
+    354,
+    363,
+    372,
+    382,
+    393,
+    404,
+    416,
+    429,
+    442,
+    456,
+    472,
+    488,
+    505,
+    524,
+    544,
+    566,
+    590,
+    615,
+    643,
+    674,
+    708,
+    745,
+    786,
+    833,
+    885,
+    944,
+    1012,
+    1090,
+    1181,
+    1296,
+    1427,
+    1587,
+    1789
+   ],
+   "sweep_x_offset_vs_control": [
+    0,
+    1
+   ],
+   "params_back_equal": true,
+   "focal": {
+    "f_x": 571.2653103844723,
+    "cx": 319.9999990009242,
+    "f_y": 571.2653351321086,
+    "cy": 239.99999980411113,
+    "rms_resid_x_px": 6.17250711205092e-06,
+    "rms_resid_y_px": 1.0068471208663786e-05,
+    "Z_over_depth_m": 1.0000000074505806
+   },
+   "model_prediction": {
+    "sweep_exact": 1.0,
+    "frame_change_x_match": 1.0,
+    "frame_change_y_match": 1.0
+   }
+  },
+  "zpd_step5_at_2049": {
+   "description": "zero-plane distance 122.5814: formula's 5th shift step at 2049 mm",
+   "required": false,
+   "exit": 0,
+   "colour_points_changed_frac": 0.5,
+   "colour_dx_mean_by_Z": [
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    1.0,
+    1.0
+   ],
+   "colour_dy_mean_by_Z": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "colour_dx_range": [
+    0,
+    1
+   ],
+   "colour_dy_range": [
+    0,
+    0
+   ],
+   "frame2000_changed_frac": 0.0,
+   "frame2000_dx_fit_const_perx_pery": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "frame2000_dy_fit_const_perx_pery": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "skeleton_max_abs_diff_xyz_m": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "skeleton_identical": true,
+   "sweep_steps_changed": true,
+   "sweep_steps": [
+    301,
+    308,
+    315,
+    322,
+    329,
+    337,
+    345,
+    354,
+    363,
+    372,
+    383,
+    393,
+    404,
+    416,
+    429,
+    442,
+    457,
+    472,
+    488,
+    506,
+    524,
+    544,
+    566,
+    590,
+    616,
+    644,
+    674,
+    708,
+    745,
+    787,
+    833,
+    885,
+    945,
+    1012,
+    1090,
+    1181,
+    1297,
+    1428,
+    1588,
+    1789
+   ],
+   "sweep_x_offset_vs_control": [
+    0,
+    1
+   ],
+   "params_back_equal": true,
+   "focal": {
+    "f_x": 571.2653103844723,
+    "cx": 319.9999990009242,
+    "f_y": 571.2653351321086,
+    "cy": 239.99999980411113,
+    "rms_resid_x_px": 6.17250711205092e-06,
+    "rms_resid_y_px": 1.0068471208663786e-05,
+    "Z_over_depth_m": 1.0000000074505806
+   },
+   "model_prediction": {
+    "sweep_exact": 1.0,
+    "frame_change_x_match": 1.0,
+    "frame_change_y_match": 1.0
+   }
+  }
+ },
+ "control_identical_to_live": true,
+ "control_params_back_equal": true,
+ "focal_control": {
+  "f_x": 571.2653103844723,
+  "cx": 319.9999990009242,
+  "f_y": 571.2653351321086,
+  "cy": 239.99999980411113,
+  "rms_resid_x_px": 6.17250711205092e-06,
+  "rms_resid_y_px": 1.0068471208663786e-05,
+  "Z_over_depth_m": 1.0000000074505806
+ },
+ "focal_live": {
+  "f_x": 571.2653103844723,
+  "cx": 319.9999990009242,
+  "f_y": 571.2653351321086,
+  "cy": 239.99999980411113,
+  "rms_resid_x_px": 6.17250711205092e-06,
+  "rms_resid_y_px": 1.0068471208663786e-05,
+  "Z_over_depth_m": 1.0000000074505806
+ },
+ "model_control": {
+  "sweep_exact": 1.0,
+  "frame2000_exact_x": 0.9871061197916666,
+  "frame2000_exact_y": 0.9866471354166667
+ }
+}

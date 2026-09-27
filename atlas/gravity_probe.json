@@ -1,0 +1,32 @@
+{
+ "GetNextFrame_hr_counts": {
+  "0x00000000": 297
+ },
+ "n_frames": 297,
+ "normal_to_gravity_mean": [
+  0.0,
+  0.0,
+  0.0
+ ],
+ "normal_to_gravity_w": 0.0,
+ "ntg_sd": [
+  0.0,
+  0.0,
+  0.0
+ ],
+ "accel_mean": [
+  -0.027297805546334496,
+  -1.0154578517181705,
+  -0.009739232191546297
+ ],
+ "ntg_distinct_rows": 1,
+ "floor_mean": [
+  0.0,
+  0.0,
+  0.0,
+  0.0
+ ],
+ "floor_nonzero_frac": 0.0,
+ "G1_verdict": "NO RESULT (vNormalToGravity is all zeros in every frame)",
+ "G2_verdict": "NO RESULT (no floor plane reported)"
+}

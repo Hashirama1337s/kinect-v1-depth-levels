@@ -1,0 +1,28 @@
+{
+ "tag": "t1",
+ "pixels": 16558,
+ "observations": 4866425,
+ "codes_used": 66,
+ "z_range_mm": [
+  847,
+  1248
+ ],
+ "fold8": [
+  -0.1788,
+  -0.021,
+  0.0614,
+  -0.2565,
+  -0.002,
+  0.2269,
+  -0.0373,
+  -0.2936
+ ],
+ "A8": 0.2936,
+ "p8": 0.5695715214239288,
+ "extreme_bin": 7,
+ "A7_control": 0.2186,
+ "A9_control": 0.2538,
+ "dnl_rms_all": 0.4886,
+ "gradient_angle_deg": 83.5,
+ "valid_setup": false
+}

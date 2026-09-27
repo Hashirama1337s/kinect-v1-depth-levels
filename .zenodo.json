@@ -1,9 +1,10 @@
 {
-  "title": "Moki&Julio: Kinect v1 as a measuring instrument (hidden depth lattice, noise populations, capabilities)",
+  "title": "Moki&Julio: Kinect v1 as a measuring instrument (depth lattice, noise populations, capabilities)",
   "upload_type": "software",
-  "description": "<p>Measurements and tools for one Xbox 360 Kinect (PrimeSense PS1080) via Kinect for Windows SDK 1.8: the hidden disparity lattice, three per-pixel noise populations, the 2.74 s noise correlation time, warm-up drift, a capability map and a first lateral accuracy check. Every claim has its script and status; corrections are listed first.</p>",
+  "version": "2.1",
+  "description": "<p>Measurements and tools for one Xbox 360 Kinect (PrimeSense PS1080) via Kinect for Windows SDK 1.8. The SDK's depth output is exactly PrimeSense's published shift-to-depth table at phase 0 (259 values between 1 and 4 m, 345 in the 0.8-4 m window, matching a 2014 census), whereas libfreenect and OpenNI sit at phase 0.5, so the drivers' value sets interleave by half a step. The SDK's calibration blob, read through documented calls only, contains the PrimeSense registration block; the SDK uses it only for depth-to-colour registration, while its 3-D coordinates use a nominal pinhole. Also: three range-dependent per-pixel noise populations, a short-range temporal correlation (detrended), warm-up drift, capability confirmations (Bayer mosaic, 10-bit IR, hardware gates, extended depth, 4-channel audio, accelerometer) and a lateral-scale check against a factory-sized reference (+0.45 % to +1.74 %; no verdict by its sealed rule). Every claim has its script and status; corrections are listed first.</p>",
   "creators": [{"name": "Moki&Julio"}],
   "access_right": "open",
   "license": "mit",
-  "keywords": ["Kinect", "Kinect v1", "structured light", "depth sensor", "depth quantisation", "sensor noise", "metrology"]
+  "keywords": ["Kinect", "Kinect v1", "structured light", "depth sensor", "depth quantisation", "sensor noise", "metrology", "PrimeSense", "calibration"]
 }

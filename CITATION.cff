@@ -1,10 +1,10 @@
 cff-version: 1.2.0
 message: "If you use these measurements or tools, please cite them as below."
-title: "Moki&Julio: Kinect v1 as a measuring instrument - the hidden depth lattice, the three noise populations, and the Xbox 360 sensor's capabilities"
+title: "Moki&Julio: Kinect v1 as a measuring instrument - the depth lattice, the three noise populations, and the Xbox 360 sensor's capabilities"
 authors:
   - name: "Moki&Julio"
-version: "2.0"
-date-released: 2026-09-26
+version: "2.1"
+date-released: 2026-09-27
 license: MIT
 repository-code: "https://github.com/Hashirama1337s/kinect-v1-depth-levels"
 keywords:
@@ -17,10 +17,16 @@ keywords:
   - sensor noise
   - metrology
   - PrimeSense
+  - calibration
 abstract: >-
-  Measurements of one Xbox 360 Kinect (PrimeSense PS1080) through Kinect for Windows SDK 1.8 with a direct ctypes/COM binding:
-  the integer disparity lattice hidden in the SDK's millimetre output (259 distinct depths between 1 and 4 m on a settled sensor,
-  apparently growing on a warming one), per-pixel temporal noise as three populations (pinned, dithering, catastrophic; the worst 1 %
-  of pixels carry 95 % of the variance), an integrated noise autocorrelation time of 2.74 s, warm-up drift, a capability map (genuinely
-  raw 1280x960 Bayer; 10-bit IR; near mode and projector-off rejected), and a first lateral accuracy check (-3.4 % with the SDK's nominal
-  focal length). Scripts, a live instrument viewer, retractions and controls included.
+  Measurements of one Xbox 360 Kinect (PrimeSense PS1080) through Kinect for Windows SDK 1.8 with a direct ctypes/COM binding.
+  The SDK's depth output is exactly PrimeSense's published shift-to-depth table at phase 0 (259 values between 1 and 4 m, 345 in the
+  0.8-4 m window, matching a 2014 census), whereas libfreenect and OpenNI sit at phase 0.5, so the drivers' value sets interleave by
+  half a step. The SDK's calibration blob, read through documented calls only, contains the PrimeSense registration block; the SDK uses
+  it only for depth-to-colour registration (mirrored, parallax evaluated at min(z, 2047 mm)), while its 3-D coordinates use a nominal
+  pinhole. Also: per-pixel temporal noise as three range-dependent populations (the worst 1 % of pixels carry 95 % of the variance); a
+  short-range temporal correlation (detrended ACF ~0.15 at lags 1-8, gone by ~3 s); warm-up drift; capability confirmations (an
+  un-demosaiced GRBG 1280x960 Bayer mosaic at 10.22 fps; 10-bit IR at 640x480 via the SDK; near mode, projector-off and colour-camera
+  settings unavailable on Xbox hardware; extended depth below the 800 mm clamp; 4-channel audio; accelerometer counts/819); and a
+  lateral-scale check against a factory-sized reference (+0.45 % to +1.74 %; no verdict by its sealed rule). Scripts, retractions and
+  controls included.
