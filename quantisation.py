@@ -11,7 +11,7 @@ CONTROL (a sensor quantised uniformly in distance, e.g. naive time-of-flight):
 These two make opposite predictions, so the test can fail. We measure the
 coefficient of variation (CV) of the gaps under each model; the smaller CV wins.
 """
-import os, sys, time; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import sys, time; sys.path.insert(0, __import__('os').path.dirname(__import__('os').path.abspath(__file__)))
 import numpy as np, nui
 
 SHIFT = 3   # NUI_IMAGE_PLAYER_INDEX_SHIFT
@@ -67,4 +67,4 @@ pred = 585.0*75.0*8.0
 print("\ncross-check against published geometry (b=75mm, f=585px, 1/8-px disparity):")
 print("  expected f*b/dd = %.0f      measured = %.0f      ratio = %.3f"
       % (pred, fb_over_dd, fb_over_dd/pred))
-np.save(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'depth_lattice.npy'), z)
+np.save('depth_lattice.npy', z)

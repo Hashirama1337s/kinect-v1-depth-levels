@@ -1,5 +1,74 @@
-# Kinect v1 — how many distinct depths does it actually produce?
+# Kinect v1 as a measuring instrument — the hidden depth lattice, the three noise populations, and what the Xbox 360 sensor can and cannot do
 
+One Xbox 360 Kinect, measured like an instrument: every claim below comes with the script that produced it, the number, and its
+status. Corrections are listed first. Single device, single host, one operator — published so that it can be contested.
+
+## In plain words (v2)
+
+- **Depth comes in rungs, not a smooth scale.** The SDK's millimetres hide an integer disparity lattice uniform in 1/z; between
+  1 and 4 m a warmed-up sensor emits only **259** distinct values. A cold sensor seems to keep "finding" new ones — that is thermal
+  drift, not information. (The v1 card below.)
+- **"The noise" is three different populations.** Per-pixel temporal noise has a median of **2.6 mm** but an RMS of **38 mm**:
+  about half the pixels are **pinned** (1–3 mm, far below one rung), a quarter to a third **dither** between two adjacent rungs, and
+  about **1 %** are **catastrophic** (edges, grazing angles, IR-absorbing surfaces) and carry **95 %** of the variance. Masking pixels
+  whose temporal sigma exceeds 10 mm keeps ~73 % of a flat target and removes 99.4 % of the variance.
+- **Averaging frames buys much less than √N.** The noise is correlated in time: integrated autocorrelation time **2.74 s**
+  (≈ 85 frames), so N frames are worth about N/85 independent samples. The correlation is physical, not SDK smoothing (the
+  autocorrelation is flat from lag 1 to 8).
+- **It drifts while warming up.** +8.2 mm over the first 6 minutes at 2.5 m, settling to ~0.02 mm/min after about an hour.
+- **Hidden capabilities, and hard limits.** `COLOR_RAW_BAYER` at 1280×960 is genuinely raw, linear, un-white-balanced sensor data;
+  IR is 640×480 only and 10-bit (the low 6 bits are always zero); near mode and projector-off are **rejected** on Xbox hardware
+  (`0x8301000F`, a Kinect-for-Windows hardware gate — a checkbox in Microsoft's sample UI is not evidence the hardware can do it);
+  the near limit is exactly **801 mm**.
+- **First accuracy check (lateral).** A box face of 330.2 mm (hand tape) reads **319 ± 3.5 mm** — a repeatable **−3.4 %** — at
+  0.8–1.0 m with the SDK's nominal focal length. Cause not yet separated (see below).
+
+## Corrections (read first)
+
+- **Retracted: "averaging beats quantisation 12.5×".** That came from an interleaved split-half, valid only for white noise. With
+  consecutive blocks the honest gain is **~1.8×** (about 6 mm at N = 180). Never quote precision from an interleaved split.
+- **Withdrawn: the word "accuracy" for plane-fit results.** A plane fitted over many pixels is a spatial estimator, not point
+  accuracy. The first real accuracy measurement is the lateral width test in v2 (below), and it is still single-target.
+- **Arithmetic fix:** the uniform-rounding floor for the lattice residual is 0.0145 grid units (the std of U(−½, ½) is 0.2887, not
+  0.5); the observed 0.0154 sits just above it. The v1 card below already uses the corrected numbers.
+- **Not a discovery:** the quantisation law itself is textbook (Khoshelham & Oude Elberink 2012). What is ours is recovering the lattice
+  from the SDK's cooked millimetre output, the warm/cold U(N) curve, the noise populations, the correlation time and the capability map.
+
+## Findings added in v2 (status · script)
+
+| finding | number | status | script |
+|---|---|---|---|
+| three noise populations; σ > 10 mm mask | median 2.62 mm, RMS 38.06 mm; worst 1 % = 94.9 % of variance | HOLDS (static scenes) | `analyse_sigma.py`, `sigma_n.py` |
+| per-pixel σ predicted by range alone | σ ∝ z^1.80, R² 0.574, held-out median rel. error 25.8 % | HOLDS | `predictor.py` |
+| the IR image does not predict σ | +0.0027 R² over range alone | NEGATIVE (the control was the result) | `predictor.py` |
+| temporal correlation | τ_int = 84.9 frames = 2.74 s; ~81 % white + ~19 % slow | HOLDS | `correlated.py`, `neff.py` |
+| warm-up drift | +8.17 mm / 6 min at 2.5 m → +0.02 mm/min by ~70 min; one unexplained ~4 mm excursion | HOLDS / OPEN | `drift.py`, `warmup.py` |
+| raw Bayer 1280×960 | genuinely raw (lag-2 > lag-1 autocorrelation, 12.9 % phase-mean spread) | HOLDS | `bayer.py` |
+| stream capability map | 10 of 28 (type, resolution) pairs open; no 1280×960 IR | HOLDS | `capmap.py` |
+| IR is 10-bit | GCD of all values = 64 (1014 levels) | HOLDS | `ir.py` |
+| near mode / projector off | both rejected, `0x8301000F` | NEGATIVE (hardware gate) | `nearmode.py`, `ir_off.py` |
+| lateral scale, known-width target | 318.3 / 322.7 / 315.9 mm vs 330.2 mm at 0.81 / 0.97 / 1.03 m (f = 571.26 px) | OPEN: focal-length error (~552 px) vs ~4 px edge loss per side vs tape error | `box_width.py` |
+
+Numbers for the noise populations were measured on static scenes; the confidence keep-rate is scene-dependent (38–48 % on real rooms
+vs 73 % on a flat target), so never quote 73 % as a sensor property.
+
+## Tools
+
+- `nui.py` — a direct ctypes binding to `Kinect10.dll` (SDK 1.8): all 25 exports are plain x64 C symbols, struct sizes asserted at import.
+- `sensor.py` — the `INuiSensor` COM interface (37 vtable slots, indices from the SDK's own `NuiSensor.h`), gated by a `verify()`.
+  ⚠ The COM and flat APIs have **different signatures for the same function**: `NuiImageStreamGetNextFrame` takes a pointer-to-pointer
+  in the flat API but a caller-allocated struct in COM; mixing them overwrites memory. `NuiInitialize` must come before accelerometer
+  or emitter calls.
+- `viewer.py` — a live instrument panel (tkinter + pillow): depth, IR, raw Bayer, confidence, live σ, and **LATTICE**, which colours each
+  pixel by its disparity rung — a live contour map where one band is one quantisation step (2.35 mm at 0.9 m, 26 mm at 3 m).
+- `first_contact.py` — a 5-frame smoke test.
+
+Setup: Kinect for Windows SDK 1.8 (driver), the sensor on a **root-hub** USB port (not behind an external hub), Python 3 with numpy
+(the viewer also uses pillow). Run every script from this folder.
+
+---
+
+## The v1 card: how many distinct depths does it actually produce?
 A single-operator measurement on one named Xbox 360 Kinect, with the scripts, the raw curve,
 the failed controls, and the criteria that would prove it wrong.
 
@@ -26,8 +95,9 @@ This card answers one question and gives you everything you need to check it you
 > **Across its working range, how many distinct depth values does the sensor actually produce —
 > and does that number ever stop growing?**
 
-Measured here: **at least 257** between 1 and 4 metres, after ten thousand frames — and the
-count was **still slowly climbing** when we stopped. The folklore number is 2048 (11-bit
+Measured here: **259** distinct values between 1 and 4 metres once the sensor is thermally settled (flat from the
+first frame to the hundred-thousandth); a cold, warming sensor appears to keep adding levels (see *The claim*).
+(v1 of this card said "at least 257 and still climbing" here — that was the cold-sensor run; corrected in v2.) The folklore number is 2048 (11-bit
 disparity), or 1024 "usable". The realisable count is neither, and it is not a single number:
 it depends on how long you look.
 
@@ -134,8 +204,9 @@ The null is a real alternative making the opposite prediction, so the test **can
 
 ## Replicate it
 
-    D:\_LIVE\KINECT\quantisation.py   accumulate levels, gap analysis vs both models
-    D:\_LIVE\KINECT\lattice_test.py   the corrected grid-residual test (use this one)
+    python quantisation.py   accumulate levels, gap analysis vs both models
+    python lattice_test.py   the corrected grid-residual test (use this one)
+    python sweep_un.py / sweep_un2.py   the U(N) curve (to 10^4 / 10^5 frames, with the confound control)
 
 Both scripts contain their hypothesis and control in the docstring. `lattice_test.py` supersedes
 the CV formulation in `quantisation.py` for the reasons in the controls section above.
@@ -177,3 +248,8 @@ is making.
 
 `LAB-CLAIMED`. Single device, single host, single driver stack, one operator, one static scene.
 Not independently replicated. Published so that it can be.
+
+
+## Cite
+
+See `CITATION.cff`. Licence: MIT (`LICENSE`). By Moki&Julio.

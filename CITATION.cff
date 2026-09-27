@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use these measurements or tools, please cite them as below."
+title: "Moki&Julio: Kinect v1 as a measuring instrument - the hidden depth lattice, the three noise populations, and the Xbox 360 sensor's capabilities"
+authors:
+  - name: "Moki&Julio"
+version: "2.0"
+date-released: 2026-09-26
+license: MIT
+repository-code: "https://github.com/Hashirama1337s/kinect-v1-depth-levels"
+keywords:
+  - Kinect
+  - Kinect v1
+  - Xbox 360 Kinect
+  - structured light
+  - depth sensor
+  - depth quantisation
+  - sensor noise
+  - metrology
+  - PrimeSense
+abstract: >-
+  Measurements of one Xbox 360 Kinect (PrimeSense PS1080) through Kinect for Windows SDK 1.8 with a direct ctypes/COM binding:
+  the integer disparity lattice hidden in the SDK's millimetre output (259 distinct depths between 1 and 4 m on a settled sensor,
+  apparently growing on a warming one), per-pixel temporal noise as three populations (pinned, dithering, catastrophic; the worst 1 %
+  of pixels carry 95 % of the variance), an integrated noise autocorrelation time of 2.74 s, warm-up drift, a capability map (genuinely
+  raw 1280x960 Bayer; 10-bit IR; near mode and projector-off rejected), and a first lateral accuracy check (-3.4 % with the SDK's nominal
+  focal length). Scripts, a live instrument viewer, retractions and controls included.

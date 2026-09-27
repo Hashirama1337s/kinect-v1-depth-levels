@@ -1,3 +1,5 @@
 __pycache__/
 *.pyc
 *.npy
+*.npz
+shot_*.png

@@ -13,8 +13,7 @@ H0 is a real alternative and this statistic can land on it, so the test can fail
 Sanity floor: integer-mm rounding alone injects  0.5/(z^2 * step)  grid units.
 """
 import numpy as np
-import os
-z = np.load(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'depth_lattice.npy'))
+z = np.load('depth_lattice.npy')
 inv = 1.0/z
 
 # least-squares fit of a uniform grid to 1/z: inv ~ a + step*n, n integer

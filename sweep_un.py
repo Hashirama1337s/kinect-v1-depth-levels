@@ -1,13 +1,13 @@
 """U(N): does the realisable depth-level set SATURATE, or keep growing?
 
-SPADE pre-publication gate: until U(N) plateaus, a cardinality of 259 is a
+Pre-publication gate: until U(N) plateaus, a cardinality of 259 is a
 FLOOR, not a census. This sweeps N to 10,000 frames under a locked driver,
 mode and scene, and reports the growth curve.
 
 U(N) = |union of valid mm depth values over frames 1..N|
 """
-import os, sys, time, json
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import sys, time, json
+sys.path.insert(0, __import__('os').path.dirname(__import__('os').path.abspath(__file__)))
 import numpy as np, nui
 
 SHIFT = 3                      # NUI_IMAGE_PLAYER_INDEX_SHIFT

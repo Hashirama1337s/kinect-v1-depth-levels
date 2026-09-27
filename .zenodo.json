@@ -1,0 +1,9 @@
+{
+  "title": "Moki&Julio: Kinect v1 as a measuring instrument (hidden depth lattice, noise populations, capabilities)",
+  "upload_type": "software",
+  "description": "<p>Measurements and tools for one Xbox 360 Kinect (PrimeSense PS1080) via Kinect for Windows SDK 1.8: the hidden disparity lattice, three per-pixel noise populations, the 2.74 s noise correlation time, warm-up drift, a capability map and a first lateral accuracy check. Every claim has its script and status; corrections are listed first.</p>",
+  "creators": [{"name": "Moki&Julio"}],
+  "access_right": "open",
+  "license": "mit",
+  "keywords": ["Kinect", "Kinect v1", "structured light", "depth sensor", "depth quantisation", "sensor noise", "metrology"]
+}
