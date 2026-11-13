@@ -1,12 +1,14 @@
 # Kinect v1 as a measuring instrument
 
-**Our Xbox 360 Kinect cannot report just any distance. Between 1 and 4 metres it has exactly 259 possible answers, and a
-formula its chip maker published lists every one of them, with nothing fitted.**
+**Our Xbox 360 Kinect cannot report just any distance: between 1 and 4 metres it has exactly 259 possible answers, and a formula its chip maker published lists every one of them, with nothing fitted.**
 
-Moki & Julio · version 2.1 (2026-09-27) · code MIT ([LICENSE](LICENSE)) · GitHub only (no archive DOI) ·
-cite via [CITATION.cff](CITATION.cff)
+![Licence: code MIT](brand/licence.svg) [![Moki & Julio lab map](brand/lab.svg)](https://github.com/Hashirama1337s)
 
-## The story in a minute
+Moki & Julio · version 2.1 (2026-09-27) · GitHub only (no archive DOI)
+
+**Read** [TECHNICAL.md](TECHNICAL.md) · **Open questions** [OPEN_QUESTIONS.md](OPEN_QUESTIONS.md) · **Changes** [CHANGES_v2.1.md](CHANGES_v2.1.md)
+
+## In plain words
 
 The Kinect is a depth camera made for the Xbox 360. Point it at a room and every pixel comes back with a distance in
 millimetres. We took one unit and measured it the way a lab measures an instrument: every claim has the script that
@@ -30,9 +32,40 @@ Why it matters: if you measure with a Kinect, you now know which numbers are pos
 averaging many frames helps less than you would hope. The count itself was first reported in 2014 (credited below); what
 we add is the exact formula match, the driver phase, the noise split and a map of what this hardware can and cannot do.
 
-## Climb the ladder
+## At a glance
 
-### Step 1 - the idea (for anyone)
+*The exact claims, for specialists. Terms are explained in "How it works" and "Words you will meet".*
+
+- **Lattice closure (HOLDS, a verification of a public formula).** The SDK 1.8 millimetre output equals PrimeSense's
+  shift-to-depth table at phase 0 with floor rounding: all 266 observed values (863-3975 mm) reproduced, zero extras, no
+  fitted parameter (`lattice_closure.py`). The open drivers sit at phase 0.5; the value sets interleave by half a rung.
+- **Noise populations (HOLDS at ~3 m; range-dependent).** Median 2.62 mm, RMS 38.06 mm, worst 1 % = 94.9 % of variance at a
+  median range of 2.9 m. Range alone predicts per-pixel sigma as z^1.80 (R² 0.574).
+- **Temporal correlation (QUALIFIED).** Raw integrated correlation time 2.74 s, mostly slow drift; detrended autocorrelation ~0.15 at
+  lags 1-8, gone by ~3 s. Averaging gain ~1.8x at N = 180 frames, not the square root of N.
+- **The SDK calibration blob** (documented calls only): 12,604 bytes containing the 118-byte PrimeSense registration
+  block; used for depth-to-colour registration only. SDK 3-D coordinates use one nominal pinhole, f = 571.2653 px.
+- **Capabilities on an Xbox 360 unit:** 13 of 28 stream/resolution pairs open; near mode, projector-off and colour-camera
+  settings refused with `0x8301000F`; 10-bit IR at 640x480; a GRBG Bayer mosaic at 1280x960 delivering 10.22 fps;
+  4-channel 16 kHz microphones.
+
+Every row, with its status and script, is in [TECHNICAL.md](TECHNICAL.md) (the full previous README). Open, measurable
+follow-ups with pass/fail bars are in [OPEN_QUESTIONS.md](OPEN_QUESTIONS.md).
+
+## What we do not claim
+
+- One Xbox 360 unit (model 1414), one host, one driver stack, one operator. Not independently replicated.
+- The count is not ours first: the Byte Kitchen blog (M. Drossaers, 2014) reported 345 values in the SDK's default range.
+  The quantisation law itself is textbook (Khoshelham & Oude Elberink 2012). Warm-up drift is published prior art.
+- Withdrawn in v2.1: "a cold sensor manufactures extra levels" (it was scene coverage) and a "-3.4 %" scale error (the
+  reference box's tape numbers were wrong). Full list: [Corrections](TECHNICAL.md#corrections-read-first).
+- Lateral scale: +0.45 % to +1.74 % against a factory-sized envelope, which is NO VERDICT by the rule fixed in advance.
+- Open: the extended-depth values that seem to wrap modulo 65,536; whether the Bayer mosaic is linear; what sets the IR
+  ceiling. The 73 % keep-rate is a flat-target number, never a sensor property.
+
+## How it works
+
+### The idea
 
 The Kinect does not time light. It projects a fixed pattern of infrared dots, looks at them with an infrared camera, and
 compares small windows of what it sees with a stored picture of the same pattern. A nearer surface shifts the dots
@@ -47,7 +80,7 @@ flowchart LR
   E --> F[Distance in mm:<br/>one rung of the ladder]
 ```
 
-### Step 2 - how it works (for a curious student)
+### A worked example
 
 Rung number *n* gives the distance
 
@@ -74,25 +107,7 @@ The three kinds of noisy pixel (measured at about 3 m; the split changes with ra
 That is why the typical pixel's noise (median **2.6 mm**) and the average noise (RMS **38 mm**) disagree so badly.
 Throwing out pixels whose noise exceeds 10 mm kept about 73 % of a flat target and removed 99.4 % of the variance.
 
-### Step 3 - the real thing (for specialists)
-
-- **Lattice closure (HOLDS, a verification of a public formula).** The SDK 1.8 millimetre output equals PrimeSense's
-  shift-to-depth table at phase 0 with floor rounding: all 266 observed values (863-3975 mm) reproduced, zero extras, no
-  fitted parameter (`lattice_closure.py`). The open drivers sit at phase 0.5; the value sets interleave by half a rung.
-- **Noise populations (HOLDS at ~3 m; range-dependent).** Median 2.62 mm, RMS 38.06 mm, worst 1 % = 94.9 % of variance at a
-  median range of 2.9 m. Range alone predicts per-pixel sigma as z^1.80 (R² 0.574).
-- **Temporal correlation (QUALIFIED).** Raw integrated correlation time 2.74 s, mostly slow drift; detrended autocorrelation ~0.15 at
-  lags 1-8, gone by ~3 s. Averaging gain ~1.8x at N = 180 frames, not the square root of N.
-- **The SDK calibration blob** (documented calls only): 12,604 bytes containing the 118-byte PrimeSense registration
-  block; used for depth-to-colour registration only. SDK 3-D coordinates use one nominal pinhole, f = 571.2653 px.
-- **Capabilities on an Xbox 360 unit:** 13 of 28 stream/resolution pairs open; near mode, projector-off and colour-camera
-  settings refused with `0x8301000F`; 10-bit IR at 640x480; a GRBG Bayer mosaic at 1280x960 delivering 10.22 fps;
-  4-channel 16 kHz microphones.
-
-Every row, with its status and script, is in [TECHNICAL.md](TECHNICAL.md) (the full previous README). Open, measurable
-follow-ups with pass/fail bars are in [OPEN_QUESTIONS.md](OPEN_QUESTIONS.md).
-
-## Use it as a tool
+## Reproduce and reuse
 
 Questions this lets you answer:
 
@@ -160,17 +175,6 @@ print(len(rungs_between(800, 4000)))         # 345
 This is the Microsoft SDK's ladder (phase 0). For a simple pixel filter, drop pixels whose temporal sigma exceeds 10 mm.
 We kept 38-48 % of our real rooms this way, against 73 % of a flat target; the rate depends on the scene.
 
-## What we did not show
-
-- One Xbox 360 unit (model 1414), one host, one driver stack, one operator. Not independently replicated.
-- The count is not ours first: the Byte Kitchen blog (M. Drossaers, 2014) reported 345 values in the SDK's default range.
-  The quantisation law itself is textbook (Khoshelham & Oude Elberink 2012). Warm-up drift is published prior art.
-- Withdrawn in v2.1: "a cold sensor manufactures extra levels" (it was scene coverage) and a "-3.4 %" scale error (the
-  reference box's tape numbers were wrong). Full list: [Corrections](TECHNICAL.md#corrections-read-first).
-- Lateral scale: +0.45 % to +1.74 % against a factory-sized envelope, which is NO VERDICT by the rule fixed in advance.
-- Open: the extended-depth values that seem to wrap modulo 65,536; whether the Bayer mosaic is linear; what sets the IR
-  ceiling. The 73 % keep-rate is a flat-target number, never a sensor property.
-
 ## Words you will meet
 
 - **Structured light** - measuring depth by projecting a known pattern and seeing how it shifts.
@@ -183,11 +187,19 @@ We kept 38-48 % of our real rooms this way, against 73 % of a flat target; the r
 - **Sealed rule** - a pass/fail bar written down before looking at the data; NO VERDICT means the bar did not decide.
 - **Root-hub port** - a USB socket wired directly to the computer's controller, not through an extra hub.
 
-## For specialists: the original README
+## How to cite
 
-The complete previous README (findings tables, corrections, the calibration-blob stages, protocol, controls, prior art
-and credits) is kept verbatim in **[TECHNICAL.md](TECHNICAL.md)**.
+```
+Moki & Julio (2026). Kinect v1 as a measuring instrument - the depth lattice, the three noise populations, and the Xbox 360 sensor's capabilities. Version 2.1. https://github.com/Hashirama1337s/kinect-v1-depth-levels
+```
 
-Other projects: [github.com/Hashirama1337s](https://github.com/Hashirama1337s)
+There is no archive DOI. Machine-readable: [CITATION.cff](CITATION.cff). Code: MIT ([LICENSE](LICENSE)).
 
-*Prepared with AI assistance.*
+## Related projects
+
+- [moki-julio-wifi-ris-cell](https://github.com/Hashirama1337s/moki-julio-wifi-ris-cell): a one-switch, three-band Wi-Fi reflector cell, designed in simulation only
+- All projects: [the Moki & Julio lab map](https://github.com/Hashirama1337s)
+
+---
+
+*Prepared with AI assistance; what was checked, and by what, is stated above.*

@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use these measurements or tools, please cite them as below."
-title: "Moki&Julio: Kinect v1 as a measuring instrument - the depth lattice, the three noise populations, and the Xbox 360 sensor's capabilities"
+title: "Kinect v1 as a measuring instrument - the depth lattice, the three noise populations, and the Xbox 360 sensor's capabilities"
 authors:
   - name: "Moki & Julio"
 version: "2.1"
