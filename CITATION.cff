@@ -4,6 +4,7 @@ title: "Kinect v1 as a measuring instrument - the depth lattice, the three noise
 authors:
   - name: "Moki & Julio"
 version: "2.1"
+doi: "10.5281/zenodo.22984914"
 date-released: 2026-09-27
 license: MIT
 repository-code: "https://github.com/Hashirama1337s/kinect-v1-depth-levels"
@@ -18,7 +19,10 @@ keywords:
   - metrology
   - PrimeSense
   - calibration
+  - depth camera
 abstract: >-
+  The Kinect is a depth camera made for the Xbox 360: point it at a room and every pixel comes back with a
+  distance in millimetres.
   Measurements of one Xbox 360 Kinect (PrimeSense PS1080) through Kinect for Windows SDK 1.8 with a direct ctypes/COM binding.
   The SDK's depth output is exactly PrimeSense's published shift-to-depth table at phase 0 (259 values between 1 and 4 m, 345 in the
   0.8-4 m window, matching a 2014 census), whereas libfreenect and OpenNI sit at phase 0.5, so the drivers' value sets interleave by

@@ -2,9 +2,9 @@
 
 **Our Xbox 360 Kinect cannot report just any distance: between 1 and 4 metres it has exactly 259 possible answers, and a formula its chip maker published lists every one of them, with nothing fitted.**
 
-![Licence: code MIT](brand/licence.svg) [![Moki & Julio lab map](brand/lab.svg)](https://github.com/Hashirama1337s)
+[![DOI 10.5281/zenodo.22984914](brand/doi.svg)](https://doi.org/10.5281/zenodo.22984914) ![Licence: code MIT](brand/licence.svg) [![Moki & Julio lab map](brand/lab.svg)](https://github.com/Hashirama1337s)
 
-Moki & Julio · version 2.1 (2026-09-27) · GitHub only (no archive DOI)
+Moki & Julio · version 2.1 (2026-09-27)
 
 **Read** [TECHNICAL.md](TECHNICAL.md) · **Open questions** [OPEN_QUESTIONS.md](OPEN_QUESTIONS.md) · **Changes** [CHANGES_v2.1.md](CHANGES_v2.1.md)
 
@@ -19,10 +19,12 @@ would be "as many as there are millimetres". It is not. Between 1 and 4 m this u
 software's 0.8-4 m window, **345**. In the standard depth stream, no capture, warm or cold, has produced a value outside
 one published table.
 
-A picture that helps: **a ladder leaning into the room.** The sensor can only stand on a rung, never between two. At 1 m
+![](brand/icon-picture.svg) **The idea in one picture.** **A ladder leaning into the room.** The sensor can only stand on a rung, never between two. At 1 m
 the rungs are about 3 mm apart; at 3 m they are about 26 mm apart. So far objects get coarser readings.
-Where the picture breaks: a real ladder has evenly spaced rungs, and this one's rungs are evenly spaced in *one over the
+**Where the picture breaks.** A real ladder has evenly spaced rungs, and this one's rungs are evenly spaced in *one over the
 distance*, not in distance. And a pixel does not stand still on its rung: noise can make it hop to the next one.
+
+![The Kinect depth ladder: the sensor reports only fixed rungs, which get further apart with distance](brand/hero-kinect-ladder.svg)
 
 What else we found. Microsoft's software and the open-source drivers use the same table but sit **half a rung apart**.
 That offers a mechanism for a driver difference first reported in 2015 (it matches the gap seen on this model). "The noise" is really three kinds of pixel, and about **1 %**
@@ -190,10 +192,10 @@ We kept 38-48 % of our real rooms this way, against 73 % of a flat target; the r
 ## How to cite
 
 ```
-Moki & Julio (2026). Kinect v1 as a measuring instrument - the depth lattice, the three noise populations, and the Xbox 360 sensor's capabilities. Version 2.1. https://github.com/Hashirama1337s/kinect-v1-depth-levels
+Moki & Julio (2026). Kinect v1 as a measuring instrument - the depth lattice, the three noise populations, and the Xbox 360 sensor's capabilities. Version 2.1. Zenodo. https://doi.org/10.5281/zenodo.22984914
 ```
 
-There is no archive DOI. Machine-readable: [CITATION.cff](CITATION.cff). Code: MIT ([LICENSE](LICENSE)).
+The DOI always resolves to the newest archived version. Version 2.1 is 10.5281/zenodo.22986801. Machine-readable: [CITATION.cff](CITATION.cff). Code: MIT ([LICENSE](LICENSE)).
 
 ## Related projects
 

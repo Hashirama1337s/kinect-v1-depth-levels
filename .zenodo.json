@@ -2,9 +2,25 @@
   "title": "Kinect v1 as a measuring instrument (depth lattice, noise populations, capabilities)",
   "upload_type": "software",
   "version": "2.1",
-  "description": "<p>Measurements and tools for one Xbox 360 Kinect (PrimeSense PS1080) via Kinect for Windows SDK 1.8. The SDK's depth output is exactly PrimeSense's published shift-to-depth table at phase 0 (259 values between 1 and 4 m, 345 in the 0.8-4 m window, matching a 2014 census), whereas libfreenect and OpenNI sit at phase 0.5, so the drivers' value sets interleave by half a step. The SDK's calibration blob, read through documented calls only, contains the PrimeSense registration block; the SDK uses it only for depth-to-colour registration, while its 3-D coordinates use a nominal pinhole. Also: three range-dependent per-pixel noise populations, a short-range temporal correlation (detrended), warm-up drift, capability confirmations (Bayer mosaic, 10-bit IR, hardware gates, extended depth, 4-channel audio, accelerometer) and a lateral-scale check against a factory-sized reference (+0.45 % to +1.74 %; no verdict by its sealed rule). Every claim has its script and status; corrections are listed first.</p>",
-  "creators": [{"name": "Moki & Julio"}],
+  "description": "<p><b>In plain words.</b> \nThe Kinect is a depth camera made for the Xbox 360: point it at a room and every pixel comes back with a distance in millimetres. We measured one unit the way a lab measures an instrument. It cannot report just any distance: between 1 and 4 metres it has exactly 259 possible values, all of them listed by a table that PrimeSense, the sensor's designer, published, with nothing fitted. Microsoft's software and the open-source drivers use the same table but sit half a step apart. About 1 % of the pixels carry 95 % of the noise, and the sensor drifts by +8.2 mm in its first 6 minutes of warming up at 2.5 m. The count itself was first reported in 2014; what is added here is the exact formula match, the driver offset, the noise split and a map of what this hardware can and cannot do.</p>\n<p><b>The idea in one picture.</b> a ladder leaning into the room. The sensor can only stand on a rung, never between two. At 1 m the rungs are about 3 mm apart; at 3 m they are about 26 mm apart, so far objects get coarser readings. <b>Where the picture breaks.</b> a real ladder has evenly spaced rungs, while these are evenly spaced in one over the distance; and a pixel does not stand still on its rung, because noise can make it hop to the next one.</p>\n<p><b>For specialists.</b> Measurements and tools for one Xbox 360 Kinect (PrimeSense PS1080) via Kinect for Windows SDK 1.8. The SDK's depth output is exactly PrimeSense's published shift-to-depth table at phase 0 (259 values between 1 and 4 m, 345 in the 0.8-4 m window, matching a 2014 census), whereas libfreenect and OpenNI sit at phase 0.5, so the drivers' value sets interleave by half a step. The SDK's calibration blob, read through documented calls only, contains the PrimeSense registration block; the SDK uses it only for depth-to-colour registration, while its 3-D coordinates use a nominal pinhole. Also: three range-dependent per-pixel noise populations, a short-range temporal correlation (detrended), warm-up drift, capability confirmations (Bayer mosaic, 10-bit IR, hardware gates, extended depth, 4-channel audio, accelerometer) and a lateral-scale check against a factory-sized reference (+0.45 % to +1.74 %; no verdict by its sealed rule). Every claim has its script and status; corrections are listed first.</p>\n<p><b>Links.</b> Repository, with a plain-language guide: <a href=\"https://github.com/Hashirama1337s/kinect-v1-depth-levels\">github.com/Hashirama1337s/kinect-v1-depth-levels</a>. All projects: <a href=\"https://github.com/Hashirama1337s\">the Moki &amp; Julio lab map</a>.</p>\n<p><i>Prepared with AI assistance; what was checked, and by what, is stated above.</i></p>",
+  "creators": [
+    {
+      "name": "Moki & Julio"
+    }
+  ],
   "access_right": "open",
   "license": "mit",
-  "keywords": ["Kinect", "Kinect v1", "structured light", "depth sensor", "depth quantisation", "sensor noise", "metrology", "PrimeSense", "calibration"]
+  "keywords": [
+    "Kinect",
+    "Kinect v1",
+    "structured light",
+    "depth sensor",
+    "depth quantisation",
+    "sensor noise",
+    "metrology",
+    "PrimeSense",
+    "calibration",
+    "Xbox 360 Kinect",
+    "depth camera"
+  ]
 }
