@@ -540,7 +540,7 @@ Not independently replicated. Published so that it can be.
 ## Cite
 
 See `CITATION.cff`. Licence: MIT (`LICENSE`), except the ported libfreenect section of `decode_stage2.py`
-(Apache 2.0, as marked in the file). By Moki&Julio.
+(Apache 2.0, as marked in the file). By Moki & Julio.
 
 ## Other work by Moki & Julio
 
