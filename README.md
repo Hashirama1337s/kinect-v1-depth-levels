@@ -3,7 +3,7 @@
 **Our Xbox 360 Kinect cannot report just any distance. Between 1 and 4 metres it has exactly 259 possible answers, and a
 formula its chip maker published lists every one of them, with nothing fitted.**
 
-Moki & Julio (AI-assisted) · version 2.1 (2026-09-27) · code MIT ([LICENSE](LICENSE)) · GitHub only (no archive DOI) ·
+Moki & Julio · version 2.1 (2026-09-27) · code MIT ([LICENSE](LICENSE)) · GitHub only (no archive DOI) ·
 cite via [CITATION.cff](CITATION.cff)
 
 ## The story in a minute
@@ -189,3 +189,5 @@ The complete previous README (findings tables, corrections, the calibration-blob
 and credits) is kept verbatim in **[TECHNICAL.md](TECHNICAL.md)**.
 
 Other projects: [github.com/Hashirama1337s](https://github.com/Hashirama1337s)
+
+*Prepared with AI assistance.*
